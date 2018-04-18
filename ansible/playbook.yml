@@ -1,0 +1,36 @@
+---
+
+# http://workshops.boundlessgeo.com/tutorial-routing/
+# https://wiki.openstreetmap.org/wiki/Osm2pgsql
+
+- hosts: all
+  become: true
+  become_method: sudo
+
+  vars:
+    admin_password: secret
+
+  roles:
+  - andrelohmann.root_colored_prompt
+
+  tasks:
+
+  - name: add pgrouting ppa
+    apt_repository:
+      repo: ppa:georepublic/pgrouting
+      state: present
+
+  - name: install packages
+    apt:
+      name: "{{ item }}"
+      state: present
+      autoclean: yes
+      update_cache: yes
+      cache_valid_time: 3600
+    with_items:
+    - git
+    - htop
+    #- osm2pgsql
+    #- osm2pgrouting
+    - postgresql-9.5-pgrouting
+...
