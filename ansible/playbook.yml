@@ -2,13 +2,16 @@
 
 # http://workshops.boundlessgeo.com/tutorial-routing/
 # https://wiki.openstreetmap.org/wiki/Osm2pgsql
+# http://download.geofabrik.de/europe/germany.html
+# https://github.com/milovanderlinden/Routing-On-OSM
 
 - hosts: all
   become: true
   become_method: sudo
 
   vars:
-    admin_password: secret
+    #osm_file: http://download.geofabrik.de/europe/germany-latest.osm.pbf
+    osm_file: http://download.geofabrik.de/europe/germany/hamburg.html
 
   roles:
   - andrelohmann.root_colored_prompt
